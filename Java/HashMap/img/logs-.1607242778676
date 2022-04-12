@@ -1,0 +1,31 @@
+2020-12-05T17:36:40,543  INFO [main] exec.SelectOperator: SELECT struct<s_id:string,s_name:string,s_birth:string,s_sex:string>
+2020-12-05T17:36:40,544  INFO [main] exec.ListSinkOperator: Initializing operator LIST_SINK[3]
+2020-12-05T17:36:40,544  INFO [main] ql.Driver: Completed compiling command(queryId=root_20201205173638_113b13de-e45e-4f72-8d85-66d52fd0d907); Time taken: 2.37 seconds
+2020-12-05T17:36:40,544  INFO [main] ql.Driver: Concurrency mode is disabled, not creating a lock manager
+2020-12-05T17:36:40,544  INFO [main] ql.Driver: Executing command(queryId=root_20201205173638_113b13de-e45e-4f72-8d85-66d52fd0d907): select * from student
+2020-12-05T17:36:40,544  INFO [main] ql.Driver: Completed executing command(queryId=root_20201205173638_113b13de-e45e-4f72-8d85-66d52fd0d907); Time taken: 0.0 seconds
+2020-12-05T17:36:40,545  INFO [main] ql.Driver: OK
+2020-12-05T17:36:40,550  INFO [d48dd5f1-e099-488e-9f80-2dfde8093abe main] conf.HiveConf: Using the default value passed in for log id: d48dd5f1-e099-488e-9f80-2dfde8093abe
+2020-12-05T17:36:40,551  INFO [d48dd5f1-e099-488e-9f80-2dfde8093abe main] session.SessionState: Resetting thread name to  main
+2020-12-05T17:36:40,550  INFO [main] CliDriver: Time taken: 2.371 seconds
+2020-12-06T16:19:44,274  INFO [main] conf.HiveConf: Found configuration file file:/opt/module/apache-hive-2.1.1-bin/conf/hive-site.xml
+2020-12-06T16:19:48,205  INFO [main] SessionState: 
+Logging initialized using configuration in file:/opt/module/apache-hive-2.1.1-bin/conf/hive-log4j2.properties Async: true
+2020-12-06T16:19:49,285  INFO [main] metastore.HiveMetaStore: 0: Opening raw store with implementation class:org.apache.hadoop.hive.metastore.ObjectStore
+2020-12-06T16:19:49,617  INFO [main] metastore.ObjectStore: ObjectStore, initialize called
+2020-12-06T16:19:54,346  INFO [main] metastore.ObjectStore: Setting MetaStore object pin classes with hive.metastore.cache.pinobjtypes="Table,StorageDescriptor,SerDeInfo,Partition,Database,Type,FieldSchema,Order"
+2020-12-06T16:20:02,635  INFO [main] metastore.MetaStoreDirectSql: Using direct SQL, underlying DB is MYSQL
+2020-12-06T16:20:02,841  INFO [main] metastore.ObjectStore: Initialized ObjectStore
+2020-12-06T16:20:04,396  WARN [main] metastore.ObjectStore: Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 2.1.0
+2020-12-06T16:20:04,396  WARN [main] metastore.ObjectStore: setMetaStoreSchemaVersion called but recording version is disabled: version = 2.1.0, comment = Set by MetaStore root@192.168.18.101
+2020-12-06T16:20:04,795  INFO [main] metastore.HiveMetaStore: Added admin role in metastore
+2020-12-06T16:20:04,814  INFO [main] metastore.HiveMetaStore: Added public role in metastore
+2020-12-06T16:20:05,070  INFO [main] metastore.HiveMetaStore: No user is added in admin role, since config is empty
+2020-12-06T16:20:05,965  INFO [main] metastore.HiveMetaStore: 0: get_all_functions
+2020-12-06T16:20:06,044  INFO [main] HiveMetaStore.audit: ugi=root	ip=unknown-ip-addr	cmd=get_all_functions	
+2020-12-06T16:20:10,397  INFO [main] session.SessionState: Created HDFS directory: /tmp/hive/root/1e5e2798-b46c-45b0-9540-0cca49e5d43d
+2020-12-06T16:20:10,559  INFO [main] session.SessionState: Created local directory: /tmp/root/1e5e2798-b46c-45b0-9540-0cca49e5d43d
+2020-12-06T16:20:10,581  INFO [main] session.SessionState: Created HDFS directory: /tmp/hive/root/1e5e2798-b46c-45b0-9540-0cca49e5d43d/_tmp_space.db
+2020-12-06T16:20:10,593  INFO [main] conf.HiveConf: Using the default value passed in for log id: 1e5e2798-b46c-45b0-9540-0cca49e5d43d
+2020-12-06T16:20:10,612  INFO [main] session.SessionState: Updating thread name to 1e5e2798-b46c-45b0-9540-0cca49e5d43d main
+2020-12-06T16:20:10,615  INFO [1e5e2798-b46c-45b0-9540-0cca49e5d43d main] CliDriver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.

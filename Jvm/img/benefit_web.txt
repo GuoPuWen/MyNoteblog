@@ -1,0 +1,3148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>福利清单</title>
+  <style>
+    body {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    @supports (bottom: env(safe-area-inset-bottom)) {
+      .benefit-footer {
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+
+      .benefit-background {
+        margin-bottom: env(safe-area-inset-bottom);
+      }
+    }
+
+    /* 样式初始化 */
+    [v-cloak] {
+      display: none;
+    }
+
+    ::-webkit-scrollbar {
+      height: 10px;
+      width: 7px;
+      background: rgba(0, 0, 0, .1)
+    }
+
+    ::-webkit-scrollbar:hover {
+      background: rgba(0, 0, 0, .2)
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, .3);
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      -ms-border-radius: 6px;
+      -o-border-radius: 6px;
+      border-radius: 6px
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      -webkit-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, .25);
+      -moz-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, .25);
+      -ms-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, .25);
+      -o-box-shadow: inset 1px 1px 1px rgba(0, 0, 0, .25);
+      box-shadow: inset 1px 1px 1px rgba(0, 0, 0, .25);
+      background-color: rgba(0, 0, 0, .4)
+    }
+
+    html,
+    body,
+    ul,
+    ol,
+    li,
+    dl,
+    dt,
+    dd,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    form,
+    input,
+    button,
+    a,
+    table,
+    thead,
+    tbody,
+    tr,
+    th,
+    td,
+    blockquote {
+      margin: 0;
+      padding: 0
+    }
+
+    input,
+    button,
+    select,
+    textarea,
+    video,
+    audio {
+      outline: none;
+      border: none
+    }
+
+    textarea {
+      resize: none
+    }
+
+    ul li {
+      list-style: none
+    }
+
+    ol li {
+      list-style-type: decimal
+    }
+
+    i,
+    em {
+      font-style: normal
+    }
+
+    a {
+      text-decoration: none;
+      cursor: pointer
+    }
+
+    a:hover {
+      text-decoration: none
+    }
+
+    img {
+      border: none
+    }
+
+    table {
+      border-spacing: 0
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none !important
+    }
+
+    input[type=number] {
+      -moz-appearance: textfield
+    }
+
+    input:-webkit-autofill,
+    textarea:-webkit-autofill,
+    select:-webkit-autofill {
+      background-color: transparent;
+      background-image: none;
+      transition: background-color 50000s ease-in-out 0s
+    }
+
+    button {
+      cursor: pointer
+    }
+
+    button[disabled] {
+      cursor: not-allowed
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      font: menu !important
+    }
+
+    body {
+      font: 14px/1 "Microsoft YaHei", "Acumin Variable Concept"
+    }
+
+    body {
+      background: #fff;
+    }
+
+    a,
+    a:hover {
+      color: #333;
+    }
+
+    input {
+      border: none;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      /*解决ios上按钮的圆角问题*/
+      border-radius: 0;
+      /*解决ios上输入框圆角问题*/
+      outline: medium;
+      /*去掉鼠标点击的默认黄色边框*/
+      background-color: transparent;
+    }
+
+    @media screen and (min-width:750px) {
+      .swiper-navbar::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        background-color: #fafafa
+      }
+
+      .swiper-navbar::-webkit-scrollbar-thumb {
+        border-radius: 0;
+        background-color: rgba(0, 0, 0, 0)
+      }
+    }
+
+    [v-cloak] {
+      display: none
+    }
+
+    img {
+      display: block;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      box-sizing: border-box;
+    }
+
+    @keyframes vmspinLoad {
+      from {
+        transform: rotate(0)
+      }
+
+      50% {
+        transform: rotate(180deg)
+      }
+
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    @-webkit-keyframes vmspinLoad {
+      from {
+        transform: rotate(0)
+      }
+
+      50% {
+        transform: rotate(180deg)
+      }
+
+      to {
+        transform: rotate(360deg)
+      }
+    }
+  </style>
+  <style>
+    #benefit-app {
+      width: 100%;
+      height: 100%;
+      max-width: 750px;
+      margin: 0 auto;
+      background-color: #f8f8f8;
+      font-size: .32rem;
+      color: #333;
+      line-height: 1;
+      Font-family: Arial, "Microsoft YaHei", "微软雅黑";
+      position: relative
+    }
+
+    .sticky {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0.78rem;
+      left: 0;
+      z-index: 999
+    }
+
+    .fixed-top {
+      position: fixed;
+      top: 0.78rem;
+      left: 0;
+      z-index: 999
+    }
+
+    .public-copy {
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      z-index: -99999
+    }
+
+    .tpwd-copy-content {
+      display: none
+    }
+
+    .tpwd-copy-dialog {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 4.4rem;
+      height: 2rem;
+      padding: 0 0.2rem;
+      font-size: 0.2rem;
+      line-height: 1.3;
+      font-weight: 400
+    }
+
+    .tpwd-copy-dialog .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(90deg, #6489fd, #3160f8);
+      color: #fff;
+      border-radius: 0.1rem;
+      font-size: 0.22rem;
+      margin-top: 0.2rem;
+      line-height: 1.3;
+      padding: 0.12rem 0.4rem
+    }
+
+    .tpwd-content {
+      display: none
+    }
+
+    .tpwd-dialog {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      justify-content: center;
+      width: 3.6rem;
+      height: 2rem;
+      font-size: 0.3rem;
+      font-weight: bold
+    }
+
+    .tpwd-dialog .btnBox {
+      text-align: center;
+      font-size: 0.22rem;
+      margin-top: 0.2rem
+    }
+
+    .poster-content {
+      display: none
+    }
+
+    .poster-dialog {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      justify-content: center;
+      width: 5rem;
+      padding: 0.2rem;
+      font-size: 0.3rem;
+      font-weight: bold;
+      position: relative
+    }
+
+    .poster-dialog img {
+      max-width: 4.6rem
+    }
+
+    .poster-dialog .btnBox {
+      text-align: center;
+      font-size: 0.22rem;
+      margin-top: 0.2rem
+    }
+
+    .tc-goods-list {
+      width: 100%;
+      display: flex;
+      flex-flow: row wrap;
+      padding: 0.2rem 0.23rem 0
+    }
+
+    .tf-goods-list {
+      width: 100%;
+      display: flex;
+      flex-flow: row wrap
+    }
+
+    .textoh {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
+    }
+
+    .textoh-two {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2
+    }
+
+    .not-select {
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      -khtml-user-select: none;
+      user-select: none
+    }
+
+    .icon-l-tm {
+      display: inline-block;
+      width: 0.26rem;
+      height: 0.26rem;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url(http://img.haodanku.com/FlwerZ_DKhHD5epgpmg-f59sGTH_);
+      margin-right: 0.12rem;
+      text-align: center;
+      color: #fff;
+      font-size: 0.26rem;
+      vertical-align: middle;
+      cursor: pointer
+    }
+
+    .icon-l-tb {
+      display: inline-block;
+      width: 0.26rem;
+      height: 0.26rem;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url(http://img.haodanku.com/Fox-NsWn_TcJ8Cdee6CE6faX2q8S);
+      margin-right: 0.12rem;
+      text-align: center;
+      color: #fff;
+      font-size: 0.26rem;
+      vertical-align: middle;
+      cursor: pointer
+    }
+
+    .benefit-main {
+      overflow-x: hidden
+    }
+
+    .benefit-background {
+      width: 7.5rem;
+      min-height: 15.9rem;
+      padding-top: 0.78rem;
+      padding-bottom: 0.78rem;
+      position: relative
+    }
+
+    .benefit-user {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 7.5rem;
+      max-width: 750px;
+      height: 0.78rem;
+      padding: 0 0.4rem;
+      background-color: #fff;
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000
+    }
+
+    .benefit-user::after {
+      content: "";
+      width: 7.5rem;
+      height: 0.78rem;
+      position: absolute;
+      top: 2px;
+      left: 0;
+      transform: translateY(-100%);
+      background-color: #fff
+    }
+
+    .benefit-user .head-img {
+      width: 0.6rem;
+      height: 0.6rem;
+      margin-right: 0.2rem;
+      border-radius: 50%;
+      object-fit: cover
+    }
+
+    .benefit-user .stage-name {
+      font-size: 0.34rem;
+      font-family: PingFang SC;
+      font-weight: 500
+    }
+
+    .benefit-user .name-text {
+      margin-left: 0.12rem;
+      font-size: 0.24rem;
+      font-family: PingFang SC;
+      font-weight: 400;
+      color: #999
+    }
+
+    .benefit-user .btn-box {
+      display: flex;
+      position: absolute;
+      right: 0.4rem;
+      top: 50%;
+      transform: translateY(-50%)
+    }
+
+    .benefit-user .btn-box .btn-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 0.4rem;
+      height: 0.4rem;
+      margin-left: 0.2rem;
+      cursor: pointer
+    }
+
+    .benefit-user .btn-box .btn-item:first-child {
+      margin-left: 0
+    }
+
+    .benefit-user .btn-box .btn-item .search-img {
+      width: 0.39rem;
+      height: 0.38rem;
+      object-fit: cover
+    }
+
+    .benefit-user .btn-box .btn-item .share-img {
+      width: 0.34rem;
+      height: 0.34rem;
+      object-fit: cover
+    }
+
+    .benefit-banner {
+      width: 100%;
+      height: 3.4rem;
+      overflow: hidden;
+      position: relative
+    }
+
+    .benefit-banner .benefit-img {
+      width: 100%
+    }
+
+    .benefit-banner .benefit-title {
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+      position: absolute;
+      top: 1.1rem;
+      left: 0;
+      transform: translateY(-50%)
+    }
+
+    .benefit-banner .benefit-subtitle {
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+      position: absolute;
+      top: 1.86rem;
+      left: 0;
+      transform: translateY(-50%)
+    }
+
+    .benefit-banner .benefit-date {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      position: absolute;
+      top: 2.6rem;
+      left: 0;
+      transform: translateY(-50%)
+    }
+
+    .benefit-banner .benefit-date .date-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 3.4rem;
+      padding: 0 0.2rem;
+      height: 0.48rem;
+      border-style: solid;
+      border-width: 0.04rem;
+      box-shadow: 0 0.15rem 0.15rem 0 rgba(0, 0, 0, .15);
+      border-radius: 0.24rem;
+      font-size: 0.22rem;
+      font-family: Alibaba PuHuiTi;
+      font-weight: 500;
+      white-space: nowrap
+    }
+
+    .benefit-tab {
+      width: 100%;
+      height: 0.92rem;
+      padding-top: 0.1rem;
+      padding-bottom: 0.1rem
+    }
+
+    .benefit-tab .tab-swiper {
+      width: 100%;
+      height: 100%
+    }
+
+    .benefit-tab .tab-swiper .tab-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      cursor: pointer;
+      position: relative
+    }
+
+    .benefit-tab .tab-swiper .tab-slide .tab-title {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 1.6rem;
+      height: 0.44rem;
+      border-radius: 0.22rem;
+      line-height: 0.44rem;
+      padding: 0 0.26rem;
+      font-size: 0.26rem;
+      font-weight: 400;
+      white-space: nowrap
+    }
+
+    .benefit-tab .tab-swiper .tab-slide .tab-title.is-active {
+      background-color: #fff
+    }
+
+    .benefit-list {
+      width: 100%;
+      padding-bottom: 0.2rem
+    }
+
+    .benefit-activity {
+      display: flex;
+      flex-flow: row wrap;
+      width: 100%;
+      padding: 0.2rem 0.2rem 0
+    }
+
+    .benefit-activity .activity-item {
+      width: 3.42rem;
+      height: 1.68rem;
+      border-radius: 0.16rem;
+      position: relative;
+      background-repeat: no-repeat;
+      background-size: cover;
+      cursor: pointer;
+      margin-top: 0.2rem;
+      margin-left: 0.2rem;
+      position: relative
+    }
+
+    .benefit-activity .activity-item:nth-child(1),
+    .benefit-activity .activity-item:nth-child(2) {
+      margin-top: 0
+    }
+
+    .benefit-activity .activity-item:nth-child(2n+1) {
+      margin-left: 0
+    }
+
+    .benefit-end {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 3.2rem;
+      padding-bottom: 0.2rem
+    }
+
+    .benefit-end .end-img {
+      width: 4.54rem;
+      height: 2.06rem;
+      object-fit: contain
+    }
+
+    .show-more {
+      width: 100%;
+      height: 1rem
+    }
+
+    .show-more .show-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      font-size: 0.3rem;
+      font-family: PingFang SC;
+      font-weight: bold;
+      color: #fff
+    }
+
+    .benefit-recommend {
+      width: 100%
+    }
+
+    .benefit-recommend .recommend-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 1rem
+    }
+
+    .benefit-recommend .recommend-title .recommend-label-left {
+      width: 0.22rem;
+      height: 0.22rem;
+      transform: rotateY(180deg);
+      object-fit: cover
+    }
+
+    .benefit-recommend .recommend-title .recommend-text {
+      font-size: 0.3rem;
+      padding: 0 0.15rem;
+      font-family: PingFang SC;
+      font-weight: bold;
+      color: #fff
+    }
+
+    .benefit-recommend .recommend-title .recommend-label-right {
+      width: 0.22rem;
+      height: 0.22rem;
+      object-fit: cover
+    }
+
+    .recommend-list {
+      width: 100%;
+      padding: 0 0.18rem 0.18rem
+    }
+
+    .recommend-list .rec-list-item {
+      width: 100%;
+      margin-top: 0.2rem;
+      cursor: pointer
+    }
+
+    .recommend-list .rec-list-item:first-child {
+      margin-top: 0
+    }
+
+    .recommend-list .rec-list-item .rec-top {
+      width: 100%;
+      height: 1.34rem;
+      padding: 0.38rem 0.26rem 0.2rem;
+      position: relative;
+      background-repeat: no-repeat;
+      background-size: 100%
+    }
+
+    .recommend-list .rec-list-item .rec-top .rec-title {
+      width: 100%;
+      display: flex;
+      align-items: flex-end
+    }
+
+    .recommend-list .rec-list-item .rec-top .rec-title .rec-title-p {
+      max-width: 4.2rem;
+      font-size: 0.42rem;
+      line-height: 1.1;
+      font-weight: bold;
+      color: #fff
+    }
+
+    .recommend-list .rec-list-item .rec-top .rec-title .rec-goods-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 0.29rem;
+      background: rgba(255, 255, 255, .7);
+      border: 0.01rem solid rgba(226, 226, 226, .7);
+      border-radius: 0.14rem;
+      padding: 0 0.1rem;
+      margin-left: 0.17rem;
+      line-height: 0;
+      font-size: 0.19rem;
+      font-weight: 400
+    }
+
+    .recommend-list .rec-list-item .rec-top .rec-subtitle {
+      width: 5.5rem;
+      margin-top: 0.04rem;
+      font-size: 0.26rem;
+      line-height: 1.1;
+      font-weight: 400;
+      color: #fff
+    }
+
+    .recommend-list .rec-list-item .rec-top .go-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 0.43rem;
+      border: 0.04rem solid #fff;
+      border-radius: 0.2rem;
+      padding: 0 0.1rem 0 0.17rem;
+      font-size: 0.26rem;
+      font-weight: 400;
+      line-height: 0;
+      color: #fff;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      right: 0.26rem;
+      transform: translateY(-50%)
+    }
+
+    .recommend-list .rec-list-item .rec-list {
+      display: flex;
+      flex-flow: row wrap;
+      width: 100%;
+      background-color: #fff;
+      overflow: hidden
+    }
+
+    .recommend-list .rec-list-item .rec-list .rec-item {
+      width: 2.38rem;
+      height: 2.75rem;
+      padding: 0.1rem 0.3rem;
+      position: relative
+    }
+
+    .recommend-list .rec-list-item .rec-list .rec-item:nth-child(1)::before,
+    .recommend-list .rec-list-item .rec-list .rec-item:nth-child(2)::before,
+    .recommend-list .rec-list-item .rec-list .rec-item:nth-child(4)::before,
+    .recommend-list .rec-list-item .rec-list .rec-item:nth-child(5)::before {
+      content: "";
+      width: 0.02rem;
+      background: #e2e2e2;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      transform: translateX(50%)
+    }
+
+    .recommend-list .rec-list-item .rec-list .rec-item:nth-child(1)::after,
+    .recommend-list .rec-list-item .rec-list .rec-item:nth-child(2)::after,
+    .recommend-list .rec-list-item .rec-list .rec-item:nth-child(3)::after {
+      content: "";
+      height: 0.02rem;
+      background: #e2e2e2;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      transform: translateY(50%)
+    }
+
+    .recommend-list .rec-list-item .rec-list .rec-item .rec-item-img {
+      width: 1.78rem;
+      height: 1.78rem;
+      object-fit: cover;
+      margin: 0 auto
+    }
+
+    .recommend-list .rec-list-item .rec-list .rec-item .rec-item-title {
+      width: 100%;
+      text-align: center;
+      margin-top: 0.08rem;
+      font-size: 0.26rem;
+      line-height: 1.1;
+      font-weight: 400
+    }
+
+    .recommend-list .rec-list-item .rec-list .rec-item .rec-item-price {
+      width: 100%;
+      text-align: center;
+      margin-top: 0.1rem;
+      font-size: 0.26rem;
+      line-height: 1.1;
+      font-weight: 400
+    }
+
+    .benefit-footer {
+      display: flex;
+      width: 7.5rem;
+      max-width: 750px;
+      background: #fff;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100
+    }
+
+    .benefit-footer .footer-nav-item {
+      flex: 1;
+      height: 0.78rem;
+      padding: 0 0.1rem;
+      text-align: center;
+      line-height: 0.78rem;
+      font-size: 0.3rem;
+      font-family: PingFang SC;
+      font-weight: bold;
+      position: relative;
+      cursor: pointer
+    }
+
+    .benefit-footer .footer-nav-item:first-child::after {
+      display: none
+    }
+
+    .benefit-footer .footer-nav-item::after {
+      content: "";
+      width: 0.02rem;
+      height: 0.3rem;
+      background: #e6e6e6;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(-50%, -50%)
+    }
+
+    .array-goods-item {
+      display: flex;
+      width: 7.04rem;
+      height: 2.54rem;
+      background: #fff;
+      border-radius: 0.1rem;
+      margin-top: 0.2rem;
+      position: relative
+    }
+
+    .array-goods-item:first-child {
+      margin-top: 0
+    }
+
+    .array-goods-item .item-pic {
+      width: 2.54rem;
+      height: 2.54rem;
+      padding: 0.13rem;
+      position: relative
+    }
+
+    .array-goods-item .item-pic .pic-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 0.1rem;
+      object-fit: cover;
+      position: relative
+    }
+
+    .array-goods-item .item-pic .rank-label {
+      width: 0.46rem;
+      height: 0.46rem;
+      border-radius: 50%;
+      position: absolute;
+      top: -0.08rem;
+      left: -0.08rem
+    }
+
+    .array-goods-item .item-pic .rank-label .rank-img {
+      width: 0.46rem;
+      height: 0.6rem;
+      object-fit: contain;
+      position: absolute;
+      bottom: 0;
+      left: 0
+    }
+
+    .array-goods-item .item-pic .rank-label .rank-num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 0.46rem;
+      height: 0.46rem;
+      background: #e1bfab;
+      border: 0.04rem solid #efd3c0;
+      border-radius: 50%;
+      font-size: 0.23rem;
+      font-weight: bold;
+      color: #1a1f1b;
+      line-height: 0.23rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%)
+    }
+
+    .array-goods-item .goods-item-main {
+      display: flex;
+      flex-flow: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      width: 4.5rem;
+      height: 2.54rem;
+      padding: 0.13rem 0.18rem 0.13rem 0.08rem;
+      position: relative
+    }
+
+    .array-goods-item .goods-item-main.main_1 {
+      padding-top: 0.26rem;
+      padding-bottom: 0.26rem
+    }
+
+    .array-goods-item .goods-item-main.main_2 {
+      padding-top: 0.37rem;
+      padding-bottom: 0.37rem
+    }
+
+    .array-goods-item .goods-title {
+      display: flex;
+      align-items: center;
+      width: 100%
+    }
+
+    .array-goods-item .goods-title .item-shorttitle {
+      max-width: 3.86rem;
+      font-size: 0.26rem;
+      font-weight: 400;
+      color: #333;
+      line-height: 1.3
+    }
+
+    .array-goods-item .goods-content {
+      display: flex;
+      width: 100%;
+      height: 0.39rem
+    }
+
+    .array-goods-item .goods-content .content-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      padding: 0 0.1rem;
+      background: #ffe7e7;
+      border-radius: 0.04rem;
+      line-height: 0.39rem;
+      font-size: 0.2rem;
+      font-weight: 400;
+      color: #ff2929
+    }
+
+    .array-goods-item .today-sale {
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      font-size: 0.23rem;
+      font-weight: 400;
+      white-space: nowrap
+    }
+
+    .array-goods-item .today-sale .num {
+      font-size: 0.3rem;
+      color: #ff2929;
+      font-weight: 600
+    }
+
+    .array-goods-item .endprice-price {
+      display: flex;
+      align-items: flex-end;
+      width: 100%;
+      white-space: nowrap
+    }
+
+    .array-goods-item .endprice-price .text {
+      font-size: 0.23rem;
+      font-weight: 400;
+      color: #ff2929;
+      line-height: 0.29rem
+    }
+
+    .array-goods-item .endprice-price .num {
+      margin-left: 0.1rem;
+      font-size: 0.33rem;
+      font-weight: bold;
+      color: #ff2929
+    }
+
+    .array-goods-item .endprice-price .del {
+      margin-left: 0.1rem;
+      font-size: 0.23rem;
+      font-weight: 400;
+      color: #999;
+      text-decoration: line-through
+    }
+
+    .array-goods-item .goods-coupon {
+      display: inline-flex;
+      height: 0.29rem;
+      cursor: pointer;
+      position: relative
+    }
+
+    .array-goods-item .goods-coupon .coupon-text {
+      padding: 0 0.05rem;
+      margin: 0;
+      background: #fd7100;
+      color: #fff;
+      font-size: 0.2rem;
+      background: linear-gradient(0deg, #ff4b42, #ff753c);
+      background: -webkit-linear-gradient(0deg, #ff4b42, #ff753c);
+      background: -o-linear-gradient(0deg, #ff4b42, #ff753c);
+      background: -moz-linear-gradient(0deg, #ff4b42, #ff753c);
+      height: 0.29rem;
+      vertical-align: middle;
+      line-height: 0.29rem
+    }
+
+    .array-goods-item .goods-coupon .coupon-money {
+      padding: 0 0.04rem;
+      margin: 0;
+      border: 0.01rem solid #fd7100;
+      color: #fd7100;
+      font-size: 0.2rem;
+      height: 0.29rem;
+      vertical-align: middle;
+      line-height: 0.29rem
+    }
+
+    .array-goods-item .tlj-coupon-price {
+      display: flex;
+      align-items: center;
+      width: 100%
+    }
+
+    .array-goods-item .tlj-coupon-price .goods-coupon {
+      display: inline-flex;
+      height: 0.29rem;
+      cursor: pointer
+    }
+
+    .array-goods-item .tlj-coupon-price .goods-coupon .coupon-text {
+      padding: 0 0.05rem;
+      margin: 0;
+      background: #fd7100;
+      color: #fff;
+      font-size: 0.2rem;
+      background: linear-gradient(0deg, #ff4b42, #ff753c);
+      background: -webkit-linear-gradient(0deg, #ff4b42, #ff753c);
+      background: -o-linear-gradient(0deg, #ff4b42, #ff753c);
+      background: -moz-linear-gradient(0deg, #ff4b42, #ff753c);
+      height: 0.29rem;
+      vertical-align: middle;
+      line-height: 0.29rem
+    }
+
+    .array-goods-item .tlj-coupon-price .goods-coupon .coupon-text .coupon-money {
+      padding: 0 0.04rem;
+      margin: 0;
+      border: 0.01rem solid #fd7100;
+      color: #fd7100;
+      font-size: 0.2rem;
+      height: 0.29rem;
+      vertical-align: middle;
+      line-height: 0.29rem
+    }
+
+    .array-goods-item .tlj-coupon-price .goods-price {
+      height: 0.29rem;
+      background: linear-gradient(180deg, #ff753c, #ff4b42);
+      border-radius: 0.02rem;
+      font-size: 0.2rem;
+      box-sizing: border-box;
+      padding: 0 0.13rem;
+      margin-left: 0.16rem;
+      font-weight: 400;
+      color: #fff;
+      line-height: 0.29rem;
+      position: relative
+    }
+
+    .array-goods-item .tlj-coupon-price .goods-price::before {
+      content: "";
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0.08rem 0.08rem 0.08rem 0;
+      border-color: transparent #ff613e transparent transparent;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(-100%, -50%)
+    }
+
+    .array-goods-item .buy_btn_1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.44rem;
+      height: 0.49rem;
+      background: linear-gradient(90deg, #ff3569, #fc1799);
+      box-shadow: 0 0.02rem 0.06rem 0 rgba(211, 13, 36, .3);
+      border-radius: 0.04rem;
+      cursor: pointer;
+      font-size: 0.23rem;
+      font-weight: bold;
+      color: #fff;
+      line-height: 0.23rem;
+      position: absolute;
+      bottom: 0.26rem;
+      right: 0.18rem
+    }
+
+    .array-goods-item .buy_btn_2 {
+      width: 1.44rem;
+      background: #ffedef;
+      border-radius: 0.04rem;
+      cursor: pointer;
+      position: absolute;
+      bottom: 0.26rem;
+      right: 0.18rem
+    }
+
+    .array-goods-item .buy_btn_2 .btn-coupon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 0.36rem;
+      font-size: 0.2rem;
+      font-weight: 400;
+      color: #ff2929;
+      white-space: nowrap
+    }
+
+    .array-goods-item .buy_btn_2 .btn-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.44rem;
+      height: 0.49rem;
+      background: linear-gradient(90deg, #ff1d62, #ff2929);
+      box-shadow: 0 0.02rem 0.06rem 0 rgba(211, 13, 36, .3);
+      border-radius: 0.04rem;
+      font-size: 0.23rem;
+      font-weight: bold;
+      color: #fff;
+      line-height: 0.23rem
+    }
+
+    .array-goods-item .buy_btn_3 {
+      width: 1.44rem;
+      height: 0.75rem;
+      padding: 0.11rem 0;
+      background: linear-gradient(90deg, #da18ba, #f72968);
+      box-shadow: 0 0.02rem 0.06rem 0 rgba(211, 13, 36, .3);
+      border-radius: 0.04rem;
+      cursor: pointer;
+      position: absolute;
+      bottom: 0.26rem;
+      right: 0.18rem
+    }
+
+    .array-goods-item .buy_btn_3 .btn-wrap {
+      width: 100%;
+      text-align: center;
+      font-size: 0.23rem;
+      font-weight: bold;
+      color: #fff
+    }
+
+    .array-goods-item .buy_btn_3 .btn-progress {
+      width: 100%;
+      height: 0.16rem;
+      margin-top: 0.1rem;
+      padding: 0 0.07rem;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .array-goods-item .buy_btn_3 .btn-progress .progress-full {
+      width: 0.82rem;
+      height: 0.07rem;
+      background: rgba(255, 255, 255, .5);
+      border-radius: 0.04rem;
+      position: relative;
+      overflow: hidden
+    }
+
+    .array-goods-item .buy_btn_3 .btn-progress .progress-full .progress-percent {
+      height: 0.07rem;
+      background: #fff;
+      border-radius: 0.04rem;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%)
+    }
+
+    .array-goods-item .buy_btn_3 .btn-progress .progress-text {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 0.4rem;
+      height: 0.16rem
+    }
+
+    .array-goods-item .buy_btn_3 .btn-progress .progress-text p {
+      font-weight: 400;
+      color: #fff;
+      font-size: 0.2rem;
+      line-height: 0.16rem;
+      transform: scale(0.84);
+      transform-origin: center
+    }
+
+    .array-goods-item .buy_btn_4 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.44rem;
+      height: 0.49rem;
+      background: linear-gradient(90deg, #0080e3, #00b6fa);
+      box-shadow: 0 0.02rem 0.06rem 0 rgba(0, 146, 235, .3);
+      border-radius: 0.04rem;
+      font-size: 0.23rem;
+      font-weight: bold;
+      color: #fff;
+      position: absolute;
+      bottom: 0.26rem;
+      right: 0.18rem
+    }
+
+    .array-goods-item .buy_btn_5 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.44rem;
+      height: 0.49rem;
+      background: linear-gradient(90deg, #fe6702, #fe4c00);
+      box-shadow: 0 0.02rem 0.06rem 0 rgba(211, 13, 36, .3);
+      border-radius: 0.04rem;
+      font-size: 0.23rem;
+      font-weight: bold;
+      color: #fff;
+      line-height: 0.23rem;
+      position: absolute;
+      bottom: 0.26rem;
+      right: 0.18rem
+    }
+
+    .block-goods-item {
+      width: 3.42rem;
+      background: #fff;
+      border-radius: 0.06rem;
+      margin-top: 0.2rem;
+      margin-left: 0.2rem;
+      position: relative
+    }
+
+    .block-goods-item:nth-child(1),
+    .block-goods-item:nth-child(2) {
+      margin-top: 0
+    }
+
+    .block-goods-item:nth-child(2n+1) {
+      margin-left: 0
+    }
+
+    .block-goods-item .item-pic {
+      width: 3.42rem;
+      height: 3.42rem;
+      position: relative
+    }
+
+    .block-goods-item .item-pic .pic-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 0.06rem 0.06rem 0 0;
+      object-fit: cover;
+      position: relative
+    }
+
+    .block-goods-item .item-pic .rank-label {
+      width: 0.46rem;
+      height: 0.46rem;
+      border-radius: 50%;
+      position: absolute;
+      top: -0.08rem;
+      left: -0.08rem
+    }
+
+    .block-goods-item .item-pic .rank-label .rank-img {
+      width: 0.46rem;
+      height: 0.6rem;
+      object-fit: contain;
+      position: absolute;
+      bottom: 0;
+      left: 0
+    }
+
+    .block-goods-item .item-pic .rank-label .rank-num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 0.46rem;
+      height: 0.46rem;
+      background: #e1bfab;
+      border: 0.04rem solid #efd3c0;
+      border-radius: 50%;
+      font-size: 0.23rem;
+      font-weight: bold;
+      color: #1a1f1b;
+      line-height: 0.23rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%)
+    }
+
+    .block-goods-item .goods-item-main {
+      width: 3.42rem;
+      padding: 0.16rem;
+      position: relative
+    }
+
+    .block-goods-item .goods-item-main.main_1 {
+      padding-bottom: 0.29rem
+    }
+
+    .block-goods-item .goods-item-main.main_2 {
+      padding-bottom: 0.42rem
+    }
+
+    .block-goods-item .goods-item-main.main_3 {
+      padding-bottom: 0.5rem
+    }
+
+    .block-goods-item .item-shorttitle {
+      width: 100%;
+      font-size: 0.26rem;
+      font-weight: 400;
+      color: #333;
+      line-height: 1.3
+    }
+
+    .block-goods-item .goods-content {
+      display: flex;
+      width: 100%;
+      height: 0.33rem;
+      margin-top: 0.14rem
+    }
+
+    .block-goods-item .goods-content .content-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      height: 0.33rem;
+      padding: 0 0.15rem;
+      background: #ffedef;
+      border-radius: 0 0.17rem 0.17rem 0.17rem;
+      font-size: 0.2rem;
+      font-weight: 400;
+      color: #ff2929;
+      line-height: 0.33rem
+    }
+
+    .block-goods-item .today-sale {
+      display: inline-block;
+      white-space: nowrap;
+      height: 0.33rem;
+      padding: 0 0.15rem;
+      margin-top: 0.14rem;
+      background: #ffedef;
+      border-radius: 0 0.17rem 0.17rem 0.17rem;
+      font-size: 0.2rem;
+      font-weight: 400;
+      color: #ff2929;
+      line-height: 0.33rem
+    }
+
+    .block-goods-item .endprice-price {
+      display: flex;
+      align-items: flex-end;
+      width: 100%;
+      white-space: nowrap
+    }
+
+    .block-goods-item .endprice-price.price_1 {
+      margin-top: 0.13rem
+    }
+
+    .block-goods-item .endprice-price.price_2 {
+      margin-top: 0.2rem
+    }
+
+    .block-goods-item .endprice-price .text {
+      font-size: 0.23rem;
+      font-weight: 400;
+      color: #ff2929;
+      line-height: 0.29rem
+    }
+
+    .block-goods-item .endprice-price .num {
+      font-size: 0.29rem;
+      font-weight: bold;
+      color: #ff2929
+    }
+
+    .block-goods-item .endprice-price .del {
+      margin-left: 0.1rem;
+      font-size: 0.24rem;
+      font-weight: 400;
+      color: #999;
+      text-decoration: line-through
+    }
+
+    .block-goods-item .goods-coupon {
+      display: inline-flex;
+      height: 0.29rem;
+      cursor: pointer
+    }
+
+    .block-goods-item .goods-coupon.coupon_1 {
+      margin-top: 0.35rem
+    }
+
+    .block-goods-item .goods-coupon.coupon_2 {
+      margin-top: 0.24rem
+    }
+
+    .block-goods-item .goods-coupon .coupon-text {
+      padding: 0 0.05rem;
+      margin: 0;
+      background: #fd7100;
+      color: #fff;
+      font-size: 0.2rem;
+      background: linear-gradient(0deg, #ff4b42, #ff753c);
+      background: -webkit-linear-gradient(0deg, #ff4b42, #ff753c);
+      background: -o-linear-gradient(0deg, #ff4b42, #ff753c);
+      background: -moz-linear-gradient(0deg, #ff4b42, #ff753c);
+      height: 0.29rem;
+      vertical-align: middle;
+      line-height: 0.29rem
+    }
+
+    .block-goods-item .goods-coupon .coupon-money {
+      padding: 0 0.04rem;
+      margin: 0;
+      border: 0.01rem solid #fd7100;
+      color: #fd7100;
+      font-size: 0.2rem;
+      height: 0.29rem;
+      vertical-align: middle;
+      line-height: 0.29rem
+    }
+
+    .block-goods-item .goods-progress {
+      width: 100%;
+      margin-top: 0.26rem
+    }
+
+    .block-goods-item .goods-progress .progress-full {
+      width: 100%;
+      height: 0.07rem;
+      background: #ffd8f6;
+      border-radius: 0.04rem;
+      position: relative;
+      overflow: hidden
+    }
+
+    .block-goods-item .goods-progress .progress-full .progress-percent {
+      height: 0.07rem;
+      background: #de1aaf;
+      border-radius: 0.04rem;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%)
+    }
+
+    .block-goods-item .goods-progress .progress-text {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      height: 0.2rem;
+      margin-top: 0.07rem
+    }
+
+    .block-goods-item .goods-progress .progress-text p {
+      font-weight: 400;
+      color: #de1aaf;
+      font-size: 0.2rem;
+      line-height: 0.16rem;
+      transform: scale(0.84);
+      transform-origin: center
+    }
+
+    .block-goods-item .tlj-coupon-price {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin-top: 0.22rem
+    }
+
+    .block-goods-item .tlj-coupon-price .goods-coupon {
+      display: inline-flex;
+      height: 0.29rem;
+      cursor: pointer
+    }
+
+    .block-goods-item .tlj-coupon-price .goods-coupon .coupon-text {
+      padding: 0 0.05rem;
+      margin: 0;
+      background: #fd7100;
+      color: #fff;
+      font-size: 0.2rem;
+      background: linear-gradient(0deg, #ff4b42, #ff753c);
+      background: -webkit-linear-gradient(0deg, #ff4b42, #ff753c);
+      background: -o-linear-gradient(0deg, #ff4b42, #ff753c);
+      background: -moz-linear-gradient(0deg, #ff4b42, #ff753c);
+      height: 0.29rem;
+      vertical-align: middle;
+      line-height: 0.29rem
+    }
+
+    .block-goods-item .tlj-coupon-price .goods-coupon .coupon-text .coupon-money {
+      padding: 0 0.04rem;
+      margin: 0;
+      border: 0.01rem solid #fd7100;
+      color: #fd7100;
+      font-size: 0.2rem;
+      height: 0.29rem;
+      vertical-align: middle;
+      line-height: 0.29rem
+    }
+
+    .block-goods-item .tlj-coupon-price .goods-price {
+      height: 0.29rem;
+      background: linear-gradient(180deg, #ff753c, #ff4b42);
+      border-radius: 0.02rem;
+      font-size: 0.2rem;
+      box-sizing: border-box;
+      padding: 0 0.13rem;
+      margin-left: 0.16rem;
+      font-weight: 400;
+      color: #fff;
+      line-height: 0.29rem;
+      position: relative
+    }
+
+    .block-goods-item .tlj-coupon-price .goods-price::before {
+      content: "";
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0.08rem 0.08rem 0.08rem 0;
+      border-color: transparent #ff613e transparent transparent;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(-100%, -50%)
+    }
+
+    .block-goods-item .buy_btn_1 {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      justify-content: center;
+      width: 0.88rem;
+      height: 0.7rem;
+      background: linear-gradient(90deg, #ff3569, #fc1799);
+      border-radius: 0.06rem 0 0.06rem 0;
+      cursor: pointer;
+      font-size: 0.23rem;
+      font-weight: bold;
+      color: #fff;
+      line-height: 1.1;
+      position: absolute;
+      bottom: 0;
+      right: 0
+    }
+
+    .block-goods-item .buy_btn_2 {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      justify-content: center;
+      width: 0.88rem;
+      height: 0.7rem;
+      background: linear-gradient(90deg, rgba(255, 29, 98, 0.92), rgba(255, 41, 41, 0.92));
+      border-radius: 0.06rem 0 0.06rem 0;
+      cursor: pointer;
+      font-size: 0.23rem;
+      font-weight: bold;
+      color: #fff;
+      line-height: 1.1;
+      position: absolute;
+      bottom: 0;
+      right: 0
+    }
+
+    .block-goods-item .buy_btn_3 {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      justify-content: center;
+      width: 0.88rem;
+      height: 0.7rem;
+      background: linear-gradient(90deg, #da18ba, #f72968);
+      border-radius: 0.06rem 0 0.06rem 0;
+      cursor: pointer;
+      font-size: 0.23rem;
+      font-weight: bold;
+      color: #fff;
+      line-height: 1.1;
+      position: absolute;
+      bottom: 0;
+      right: 0
+    }
+
+    .block-goods-item .buy_btn_4 {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      justify-content: center;
+      width: 0.88rem;
+      height: 0.7rem;
+      background: linear-gradient(90deg, #0080e3, #00b6fa);
+      border-radius: 0.06rem 0 0.06rem 0;
+      cursor: pointer;
+      font-size: 0.23rem;
+      font-weight: bold;
+      color: #fff;
+      line-height: 1.1;
+      position: absolute;
+      bottom: 0;
+      right: 0
+    }
+
+    .block-goods-item .buy_btn_5 {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      justify-content: center;
+      width: 0.88rem;
+      height: 0.7rem;
+      background: linear-gradient(90deg, #fe6702, #fe4c00);
+      border-radius: 0.06rem 0 0.06rem 0;
+      cursor: pointer;
+      font-size: 0.23rem;
+      font-weight: bold;
+      color: #fff;
+      line-height: 1.1;
+      position: absolute;
+      bottom: 0;
+      right: 0
+    }
+
+    .detailed-goods-item {
+      display: flex;
+      width: 100%;
+      height: 1.3rem;
+      position: relative
+    }
+
+    .detailed-goods-item:nth-child(odd) {
+      background-color: rgba(0, 0, 0, .1)
+    }
+
+    .detailed-goods-item:nth-child(even) {
+      background-color: transparent
+    }
+
+    .detailed-goods-item .goods-item-column {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20%;
+      height: 1.3rem;
+      position: relative;
+      font-size: 0.2rem;
+      font-weight: 400;
+      color: #fff;
+      position: relative
+    }
+
+    .detailed-goods-item .goods-item-column .column-line {
+      width: 1px;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      filter: brightness(1.5);
+      -webkit-filter: brightness(1.5)
+    }
+
+    .detailed-goods-item .goods-item-column .item-pic {
+      width: 0.83rem;
+      height: 0.83rem;
+      position: relative
+    }
+
+    .detailed-goods-item .goods-item-column .item-pic .pic-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: relative
+    }
+
+    .detailed-goods-item .goods-item-column .item-shorttitle {
+      width: 100%;
+      padding: 0 0.2rem;
+      line-height: 1.3
+    }
+
+    .detailed-goods-item .goods-item-column .coupon-money {
+      width: 100%;
+      white-space: nowrap;
+      text-align: center
+    }
+
+    .detailed-goods-item .goods-item-column .item-endprice {
+      width: 100%;
+      white-space: nowrap;
+      text-align: center
+    }
+
+    .detailed-goods-item .goods-item-column .buy-btn {
+      max-width: 96%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 0.44rem;
+      background: #fff;
+      border-radius: 0.22rem;
+      padding: 0 0.2rem;
+      font-size: 0.2rem;
+      line-height: 0.44rem;
+      font-family: Microsoft YaHei;
+      font-weight: 400;
+      cursor: pointer;
+      white-space: nowrap
+    }
+
+    .detailed-header {
+      display: flex;
+      width: 100%;
+      height: 0.52rem;
+      margin-top: 0.2rem;
+      position: relative
+    }
+
+    .detailed-header .row-line-top {
+      width: 100%;
+      height: 1px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      filter: brightness(1.5);
+      -webkit-filter: brightness(1.5)
+    }
+
+    .detailed-header .row-line-bottom {
+      width: 100%;
+      height: 1px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      filter: brightness(1.5);
+      -webkit-filter: brightness(1.5)
+    }
+
+    .detailed-header .header-column {
+      width: 20%;
+      height: 0.5rem;
+      line-height: 0.5rem;
+      text-align: center;
+      font-size: 0.2rem;
+      font-weight: 400;
+      color: #fff;
+      position: relative
+    }
+
+    .detailed-header .header-column .column-line {
+      width: 1px;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      filter: brightness(1.5);
+      -webkit-filter: brightness(1.5)
+    }
+
+    .detailed-list {
+      position: relative
+    }
+
+    .detailed-list .row-line {
+      width: 100%;
+      height: 1px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      filter: brightness(1.5);
+      -webkit-filter: brightness(1.5)
+    }
+
+    .benefit-icon {
+      width: 1.3rem;
+      height: 1.8rem;
+      position: fixed;
+      bottom: 1.1rem;
+      right: 0.1rem;
+    }
+
+    .benefit-icon .icon-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      cursor: pointer
+    }
+
+    .vmIconLoad {
+      width: .32rem;
+      height: .32rem;
+      margin-right: .06rem;
+      font-size: 20px;
+      color: #4d74ff;
+      display: inline-block;
+      vertical-align: middle;
+      background-image: url(http://img.haodanku.com/Fs3CUOAV8FeUjyhyU-3xOO5DSphI);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      -webkit-animation: vmspinLoad 2s infinite linear;
+      animation: vmspinLoad 1.2s infinite linear
+    }
+
+    .vmIconLoad::before {
+      -webkit-font-smoothing: antialiased;
+      transform: translate(0, 0)
+    }
+  </style>
+  <!-- <link type="text/css" rel="stylesheet" href="/Public/assets/home/css/benefitList/benefit_web.css?t=20200715_1" /> -->
+  <link type="text/css" rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/5.4.5/css/swiper.min.css">
+  <link type="text/css" rel="stylesheet" href="//lib.baomitu.com/layer/2.3/skin/layer.css">
+</head>
+
+<body>
+  <div id="benefit-app" v-cloak>
+    <div class="benefit-main" v-if="!loading">
+      <div class="benefit-background" v-bind:style="{'background':attr.background_color}">
+        <div class="benefit-user">
+          <template v-if="navIndex == 0 && attr.show_seller_info == 1">
+            <img class="head-img" v-if="attr.head_img" v-bind:src="attr.head_img">
+            <p class="stage-name" v-if="attr.stage_name">{{attr.stage_name}}</p>
+            <p class="name-text">为你精选</p>
+          </template>
+          <template v-if='navIndex == 0 && attr.show_seller_info != 1'>
+            <p class="stage-name">好物推荐</p>
+          </template>
+          <template v-if='navIndex == 1'>
+            <p class="stage-name">好物推荐</p>
+          </template>
+          <div class="btn-box">
+            <div class="btn-item" v-on:click="goSearchLink">
+              <img class="search-img" src="http://img.haodanku.com/Fh3I81c8Dycp4kpYu1zy3IJmai6L">
+            </div>
+            <div class="btn-item" v-if="attr.poster || getParam('preview')" v-on:click="openPosterDialog">
+              <img class="share-img" src="http://img.haodanku.com/FjQAuLx4AlPHuFjmWNaJtmoAcjUc">
+            </div>
+          </div>
+        </div>
+        <div v-show="navIndex == 0">
+          <div class="benefit-banner">
+            <img class="benefit-img" v-bind:src="attr.background_img" />
+            <template v-if="attr.is_official != 1">
+              <div class="benefit-title" v-bind:style="benefitTitleStyle">{{attr.title}}</div>
+              <div class="benefit-subtitle" v-bind:style="benefitSubtitleStyle">{{attr.subtitle}}</div>
+              <div class="benefit-date" v-if="attr.show_date == 1">
+                <div class="date-wrap" v-bind:style="benefitDateStyle" v-if="attr.type != 3">{{attr.date_text}}</div>
+                <div class="date-wrap" v-bind:style="benefitDateStyle" v-if="attr.type == 3">
+                  距结束还剩{{times.D}}天{{times.h}}时{{times.m}}分{{times.s}}秒
+                </div>
+              </div>
+            </template>
+          </div>
+          <div class="benefit-tab" v-bind:class="[{'sticky':isiOS},{'fixed-top':(!isiOS && fixed_top)}]"
+            v-bind:style="{'background':attr.background_color}" v-show="list_tab.length > 1">
+            <div class="swiper-container tab-swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide tab-slide" v-for="(item,index) in list_tab" v-bind:key="index"
+                  v-on:click="changeTabItem(index,item.tab_id)">
+                  <div class="tab-title" v-bind:class="{'is-active':active_tab_id == item.tab_id}"
+                    v-bind:style="{'color':(active_tab_id == item.tab_id?attr.background_color:'#fff')}">
+                    {{item.tab}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="benefit-tab" v-if="list_tab.length > 1 && !isiOS && fixed_top"></div>
+          <div class="benefit-list" v-if="!is_end && list_type === 1">
+            <component v-bind:is="listStyleName" v-bind:id="id" v-bind:styletype="attr.type"
+              v-bind:isofficial="attr.is_official" v-bind:stylecolor="attr.background_color" v-bind:contentitem="list"
+              v-on:get-tpwd="getTpwd">
+            </component>
+            <div class="show-more">
+              <div class="show-text" v-if="show_more == 1" style="cursor:pointer;" v-on:click="loadNextPage">
+                点击加载更多&nbsp;＞
+              </div>
+              <div class="show-text realpic-loading" v-if="show_more == 2"><i class="vmIconLoad"></i><em>数据加载中...</em>
+              </div>
+              <div class="show-text" v-if="show_more == 3">没有更多内容了</div>
+            </div>
+          </div>
+          <div class="benefit-list" v-if="!is_end && list_type === 2">
+            <div class="benefit-activity">
+              <div class="activity-item" v-for="(item,index) in list" v-bind:key="index"
+                v-bind:style="{'background-image': ('url('+item.activity_img+')')}"
+                v-on:click="createTpwdCommon(item,2)"></div>
+            </div>
+          </div>
+          <div class="benefit-end" v-if="is_end">
+            <img class="end-img" src="http://img.haodanku.com/FnVzsSfr7tAUAPZGiwtaEZhLbehM">
+          </div>
+          <div class="benefit-recommend" v-if="recommend_list.length">
+            <div class="recommend-title">
+              <img class="recommend-label-left" src="http://img.haodanku.com/FoKNzHMSrzADaJKhP2cpyZJe49Gj">
+              <p class="recommend-text">为你推荐</p>
+              <img class="recommend-label-right" src="http://img.haodanku.com/FoKNzHMSrzADaJKhP2cpyZJe49Gj">
+            </div>
+            <div class="recommend-list">
+              <div class="rec-list-item" v-for="(item,index) in recommend_list" v-bind:key="index"
+                v-on:click="goLink(item.url)">
+                <div class="rec-top" v-bind:style="{'background-image': ('url('+item.img_top+')')}">
+                  <div class="rec-title">
+                    <p class="rec-title-p textoh">{{item.title}}</p>
+                    <div class="rec-goods-num">共{{item.item_count}}款商品</div>
+                  </div>
+                  <div class="rec-subtitle textoh">{{item.subtitle}}</div>
+                  <div class="go-btn">GO＞</div>
+                </div>
+                <div class="rec-list">
+                  <div class="rec-item" v-for="(recitem,index) in item.item" v-bind:key="index">
+                    <img class="rec-item-img" v-bind:src="recitem.itempic" alt="">
+                    <div class="rec-item-title textoh" v-bind:style="{'color':attr.background_color}">
+                      {{recitem.itemtitle}}</div>
+                    <div class="rec-item-price" v-bind:style="{'color':attr.background_color}">
+                      ￥ {{recitem.itemendprice}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div v-show="navIndex == 1">
+          <div class="recommend-list" style="padding-top: 0.2rem;">
+            <div class="rec-list-item" v-for="(item,index) in more_list" v-bind:key="index"
+              v-on:click="goLink(item.url)">
+              <div class="rec-top" v-bind:style="{'background-image': ('url('+item.img_top+')')}">
+                <div class="rec-title">
+                  <p class="rec-title-p textoh">{{item.title}}</p>
+                  <div class="rec-goods-num">共{{item.item_count}}款商品</div>
+                </div>
+                <div class="rec-subtitle textoh">{{item.subtitle}}</div>
+                <div class="go-btn">GO＞</div>
+              </div>
+              <div class="rec-list">
+                <div class="rec-item" v-for="(recitem,index) in item.item" v-bind:key="index">
+                  <img class="rec-item-img" v-bind:src="recitem.itempic" alt="">
+                  <div class="rec-item-title textoh" v-bind:style="{'color':attr.background_color}">
+                    {{recitem.itemtitle}}</div>
+                  <div class="rec-item-price" v-bind:style="{'color':attr.background_color}">
+                    ￥ {{recitem.itemendprice}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="benefit-footer">
+          <div class="footer-nav-item textoh" v-bind:style="{'color':(navIndex==0?attr.background_color:'#333333')}"
+            v-on:click="changeNavIndex(0)">{{attr.title}}</div>
+          <div class="footer-nav-item textoh" v-bind:style="{'color':(navIndex==1?attr.background_color:'#333333')}"
+            v-on:click="changeNavIndex(1)">更多福利</div>
+        </div>
+        <div>
+          <div class="benefit-icon" v-if="icon.activity_material_id" v-on:click='createTpwdCommon(icon,2)'>
+            <img class="icon-img" v-bind:src="icon.activity_img">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="tpwd-copy-content">
+        <div class="tpwd-copy-dialog">
+          <p>复制本段文字{{tpwd}},打开淘宝APP领券购买</p>
+          <p class="copy-btn" v-on:click="copyTpwd" id="public-copy">一键复制</p>
+        </div>
+      </div>
+      <div class="tpwd-content">
+        <div class="tpwd-dialog">
+          <p>{{tpwd}}</p>
+          <p class="btnBox">手动长按复制口令</p>
+        </div>
+      </div>
+      <div class="poster-content">
+        <div class="poster-dialog">
+          <img v-bind:src="attr.poster" alt="">
+          <p class="btnBox">长按保存图片分享</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <template id="template-array-list">
+      <div class="tc-goods-list">
+        <div class="array-goods-item" v-for="(item,index) in contentitem" v-bind:key="index">
+          <div class="item-pic">
+            <img class="pic-img" v-bind:src="item.itempic" draggable="false">
+            <div class="rank-label" v-if="styletype==2 && isofficial != 1">
+              <img v-if="index==0" class="rank-img" src="http://img.haodanku.com/Fs4m_j7ztg3W871TDy08RQUqUFyu">
+              <img v-if="index==1" class="rank-img" src="http://img.haodanku.com/FqgzaWcGCtv54h5s_sVEU1cbJo_b">
+              <img v-if="index==2" class="rank-img" src="http://img.haodanku.com/FgOaxGD8l4BGLVF57V83nz_u0aTO">
+              <div class="rank-num" v-if="index>=3">{{index+1}}</div>
+            </div>
+          </div>
+          <div class="goods-item-main main_1" v-if="styletype == 1">
+            <div class="goods-title">
+              <span class="icon-l-tm" v-if="item.shoptype=='B'"></span>
+              <span class="icon-l-tb" v-if="item.shoptype=='C'"></span>
+              <span class="item-shorttitle textoh">{{item.itemshorttitle}}</span>
+            </div>
+            <div class="goods-content">
+              <div class="content-label" v-if="item.content">{{item.content}}</div>
+            </div>
+            <div class="endprice-price">
+              <p class="text">券后￥</p>
+              <p class="num">{{parseFloat(item.itemendprice)}}</p>
+              <p class="del">￥{{parseFloat(item.itemprice)}}</p>
+            </div>
+            <div class="goods-coupon" v-if="item.couponmoney">
+              <p class="coupon-text">券</p>
+              <p class="coupon-money">￥{{parseFloat(item.couponmoney)}}</p>
+            </div>
+            <div class="buy_btn_1" v-on:click="createTpwdFun(item,1)">立即抢购</div>
+          </div>
+          <div class="goods-item-main main_2" v-if="styletype == 2">
+            <div class="goods-title">
+              <span class="icon-l-tm" v-if="item.shoptype=='B'"></span>
+              <span class="icon-l-tb" v-if="item.shoptype=='C'"></span>
+              <span class="item-shorttitle textoh">{{item.itemshorttitle}}</span>
+            </div>
+            <div class="today-sale">今日已抢<span class="num">{{item.todaysale}}</span>件</div>
+            <div class="endprice-price">
+              <p class="text">券后￥</p>
+              <p class="num">{{parseFloat(item.itemendprice)}}</p>
+              <p class="del">￥{{parseFloat(item.itemprice)}}</p>
+            </div>
+            <div class="buy_btn_2" v-on:click="createTpwdFun(item,1)">
+              <div class="btn-coupon" v-if="item.couponmoney">优惠券￥{{parseFloat(item.couponmoney)}}</div>
+              <div class="btn-wrap">立即抢购</div>
+            </div>
+          </div>
+          <div class="goods-item-main main_2" v-if="styletype == 3">
+            <div class="goods-title">
+              <span class="icon-l-tm" v-if="item.shoptype=='B'"></span>
+              <span class="icon-l-tb" v-if="item.shoptype=='C'"></span>
+              <span class="item-shorttitle textoh">{{item.itemshorttitle}}</span>
+            </div>
+            <div class="endprice-price">
+              <p class="text">券后￥</p>
+              <p class="num">{{parseFloat(item.itemendprice)}}</p>
+              <p class="del">￥{{parseFloat(item.itemprice)}}</p>
+            </div>
+            <div class="goods-coupon" v-if="item.couponmoney">
+              <p class="coupon-text">券</p>
+              <p class="coupon-money">￥{{parseFloat(item.couponmoney)}}</p>
+            </div>
+            <div class="buy_btn_3" v-on:click="createTpwdFun(item,1)">
+              <div class="btn-wrap">立即秒杀</div>
+              <div class="btn-progress">
+                <div class="progress-full">
+                  <i class="progress-percent" v-bind:style="{'width':(parseFloat(item.coupon_rate) + '%')}"></i>
+                </div>
+                <div class="progress-text">
+                  <p>{{parseFloat(item.coupon_rate)}}%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="goods-item-main main_2" v-if="styletype == 4">
+            <div class="goods-title">
+              <span class="icon-l-tm" v-if="item.shoptype=='B'"></span>
+              <span class="icon-l-tb" v-if="item.shoptype=='C'"></span>
+              <span class="item-shorttitle textoh">{{item.itemshorttitle}}</span>
+            </div>
+            <div class="endprice-price">
+              <p class="text">券后￥</p>
+              <p class="num">{{parseFloat(item.itemendprice)}}</p>
+              <p class="del">￥{{parseFloat(item.itemprice)}}</p>
+            </div>
+            <div class="goods-coupon" v-if="item.couponmoney">
+              <p class="coupon-text">券</p>
+              <p class="coupon-money">￥{{parseFloat(item.couponmoney)}}</p>
+            </div>
+            <div class="buy_btn_4" v-on:click="createTpwdFun(item,1)">
+              立即抢购
+            </div>
+          </div>
+          <div class="goods-item-main main_2" v-if="styletype == 5">
+            <div class="goods-title">
+              <span class="icon-l-tm" v-if="item.shoptype=='B'"></span>
+              <span class="icon-l-tb" v-if="item.shoptype=='C'"></span>
+              <span class="item-shorttitle textoh">{{item.itemshorttitle}}</span>
+            </div>
+            <div class="tlj-coupon-price">
+              <div class="goods-coupon" v-if="parseFloat(item.couponmoney)">
+                <p class="coupon-text">券</p>
+                <p class="coupon-money">￥{{parseFloat(item.couponmoney)}}</p>
+              </div>
+              <div class="goods-price">淘礼金红包￥{{parseFloat(item.price)}}</div>
+            </div>
+            <div class="endprice-price">
+              <p class="text">券后￥</p>
+              <p class="num">{{parseFloat(item.itemendprice)}}</p>
+              <p class="del">￥{{parseFloat(item.itemprice)}}</p>
+            </div>
+            <div class="buy_btn_5" v-on:click="createTpwdFun(item,1)">
+              立即抢购
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+    <template id="template-block-list">
+      <div class="tc-goods-list">
+        <div class="block-goods-item" v-for="(item,index) in contentitem" v-bind:key="index">
+          <div class="item-pic">
+            <img class="pic-img" v-bind:src="item.itempic" draggable="false">
+            <div class="rank-label" v-if="styletype==2 && isofficial != 1">
+              <img v-if="index==0" class="rank-img" src="http://img.haodanku.com/Fs4m_j7ztg3W871TDy08RQUqUFyu">
+              <img v-if="index==1" class="rank-img" src="http://img.haodanku.com/FqgzaWcGCtv54h5s_sVEU1cbJo_b">
+              <img v-if="index==2" class="rank-img" src="http://img.haodanku.com/FgOaxGD8l4BGLVF57V83nz_u0aTO">
+              <div class="rank-num" v-if="index>=3">{{index+1}}</div>
+            </div>
+          </div>
+          <div class="goods-item-main main_1" v-if="styletype == 1">
+            <div class="item-shorttitle textoh">{{item.itemshorttitle}}</div>
+            <div class="goods-content">
+              <div class="content-label" v-if="item.content">{{item.content}}</div>
+            </div>
+            <div class="endprice-price price_1">
+              <p class="text">券后：</p>
+              <p class="num">￥{{parseFloat(item.itemendprice)}}</p>
+              <p class="del">￥{{parseFloat(item.itemprice)}}</p>
+            </div>
+            <div class="goods-coupon coupon_1" v-if="item.couponmoney">
+              <p class="coupon-text">券</p>
+              <p class="coupon-money">￥{{parseFloat(item.couponmoney)}}</p>
+            </div>
+            <div class="buy_btn_1" v-on:click="createTpwdFun(item,1)"><span>立即<br>抢购</span></div>
+          </div>
+          <div class="goods-item-main main_1" v-if="styletype == 2">
+            <div class="item-shorttitle textoh">{{item.itemshorttitle}}</div>
+            <div class="today-sale">今日已抢{{item.todaysale}}件</div>
+            <div class="endprice-price price_2">
+              <p class="text">券后：</p>
+              <p class="num">￥{{parseFloat(item.itemendprice)}}</p>
+              <p class="del">￥{{parseFloat(item.itemprice)}}</p>
+            </div>
+            <div class="goods-coupon coupon_1" v-if="item.couponmoney">
+              <p class="coupon-text">券</p>
+              <p class="coupon-money">￥{{parseFloat(item.couponmoney)}}</p>
+            </div>
+            <div class="buy_btn_2" v-on:click="createTpwdFun(item,1)"><span>立即<br>抢购</span></div>
+          </div>
+          <div class="goods-item-main main_1" v-if="styletype == 3">
+            <div class="item-shorttitle textoh">{{item.itemshorttitle}}</div>
+            <div class="endprice-price price_2">
+              <p class="text">券后：</p>
+              <p class="num">￥{{parseFloat(item.itemendprice)}}</p>
+              <p class="del">￥{{parseFloat(item.itemprice)}}</p>
+            </div>
+            <div class="goods-progress">
+              <div class="progress-full">
+                <i class="progress-percent" v-bind:style="{'width':(parseFloat(item.coupon_rate) + '%')}"></i>
+              </div>
+              <div class="progress-text">
+                <p>已抢{{parseFloat(item.coupon_rate)}}%</p>
+              </div>
+            </div>
+            <div class="goods-coupon coupon_2" v-if="item.couponmoney">
+              <p class="coupon-text">券</p>
+              <p class="coupon-money">￥{{parseFloat(item.couponmoney)}}</p>
+            </div>
+            <div class="buy_btn_3" v-on:click="createTpwdFun(item,1)"><span>立即<br>秒杀</span></div>
+          </div>
+          <div class="goods-item-main main_2" v-if="styletype == 4">
+            <div class="item-shorttitle textoh">{{item.itemshorttitle}}</div>
+            <div class="endprice-price price_2">
+              <p class="text">券后：</p>
+              <p class="num">￥{{parseFloat(item.itemendprice)}}</p>
+              <p class="del">￥{{parseFloat(item.itemprice)}}</p>
+            </div>
+            <div class="goods-coupon coupon_1" v-if="item.couponmoney">
+              <p class="coupon-text">券</p>
+              <p class="coupon-money">￥{{parseFloat(item.couponmoney)}}</p>
+            </div>
+            <div class="buy_btn_4" v-on:click="createTpwdFun(item,1)"><span>立即<br>抢购</span></div>
+          </div>
+          <div class="goods-item-main main_3" v-if="styletype == 5">
+            <div class="item-shorttitle textoh">{{item.itemshorttitle}}</div>
+            <div class="tlj-coupon-price">
+              <div class="goods-coupon" v-if="item.couponmoney">
+                <p class="coupon-text">券</p>
+                <p class="coupon-money">￥{{parseFloat(item.couponmoney)}}</p>
+              </div>
+              <div class="goods-price">淘礼金红包￥{{parseFloat(item.price)}}</div>
+            </div>
+            <div class="endprice-price price_2">
+              <p class="text">券后：</p>
+              <p class="num">￥{{parseFloat(item.itemendprice)}}</p>
+              <p class="del">￥{{parseFloat(item.itemprice)}}</p>
+            </div>
+            <div class="buy_btn_5" v-on:click="createTpwdFun(item,1)"><span>立即<br>抢购</span></div>
+          </div>
+        </div>
+      </div>
+    </template>
+    <template id="template-detailed-list">
+      <div>
+        <div class="detailed-header" v-if="contentitem.length">
+          <div class="row-line-top" v-bind:style="{'background-color':stylecolor}"></div>
+          <div class="header-column">
+            图片
+          </div>
+          <div class="header-column">
+            <div class="column-line" v-bind:style="{'background-color':stylecolor}"></div>
+            商品标题
+          </div>
+          <div class="header-column">
+            <div class="column-line" v-bind:style="{'background-color':stylecolor}"></div>
+            优惠券
+          </div>
+          <div class="header-column">
+            <div class="column-line" v-bind:style="{'background-color':stylecolor}"></div>
+            券后价
+          </div>
+          <div class="header-column">
+            <div class="column-line" v-bind:style="{'background-color':stylecolor}"></div>
+            复制口令
+          </div>
+          <div class="row-line-bottom" v-bind:style="{'background-color':stylecolor}"></div>
+        </div>
+        <div class="tf-goods-list detailed-list">
+          <div class="detailed-goods-item" v-for="(item,index) in contentitem" v-bind:key="index">
+            <div class="goods-item-column">
+              <div class="item-pic">
+                <img class="pic-img" v-bind:src="item.itempic" draggable="false">
+              </div>
+            </div>
+            <div class="goods-item-column">
+              <div class="column-line" v-bind:style="{'background-color':stylecolor}"></div>
+              <div class="item-shorttitle textoh-two">{{item.itemshorttitle}}</div>
+            </div>
+            <div class="goods-item-column">
+              <div class="column-line" v-bind:style="{'background-color':stylecolor}"></div>
+              <div class="coupon-money">￥{{parseFloat(item.couponmoney)}}</div>
+            </div>
+            <div class="goods-item-column">
+              <div class="column-line" v-bind:style="{'background-color':stylecolor}"></div>
+              <div class="item-endprice">￥{{parseFloat(item.itemendprice)}}</div>
+            </div>
+            <div class="goods-item-column">
+              <div class="column-line" v-bind:style="{'background-color':stylecolor}"></div>
+              <div class="buy-btn" v-bind:style="{'color':stylecolor}" v-on:click="createTpwdFun(item,1)">立即抢购</div>
+            </div>
+          </div>
+          <div class="row-line" v-bind:style="{'background-color':stylecolor}"></div>
+        </div>
+      </div>
+    </template>
+  </div>
+  <script src="https://lib.baomitu.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+  <script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
+  <script src="https://cdn.bootcss.com/qs/6.9.3/qs.min.js"></script>
+  <script src="https://lib.baomitu.com/layer/2.3/layer.js"></script>
+  <script src="https://lib.baomitu.com/clipboard.js/2.0.4/clipboard.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/5.4.5/js/swiper.min.js"> </script>
+  <script>
+    // 移动端rem自适应
+    (function () {
+      var dpr = window.devicePixelRatio;
+      function resize() {
+        var deviceWidth = document.documentElement.clientWidth;
+        deviceWidth = deviceWidth >= 750 ? 750 : deviceWidth; // 最大宽度750px，设计稿宽度以750px为准，1rem等于100px。
+        document.documentElement.style.fontSize = (deviceWidth / (750 / 100)) + 'px';
+      }
+      resize();
+      window.onresize = resize;
+    })()
+  </script>
+  <script>
+    function request(method, url, param) {
+      // var protocol = window.location.protocol.substring(0, window.location.protocol.length - 1)
+      var independent = "{$independent}";
+      if (independent == 1) {
+        var h = window.location.host;
+        var domain = h.replace('www', window.location.protocol + '//api');
+      } else {
+        var domain = 'https://api.haodanku.com';
+      }
+
+
+      var requestConfig = {}
+      if (method === 'get') {
+        param = param ? param : {}
+        requestConfig = { method: method, url: domain + url, params: param }
+      } else if (method === 'post') {
+        param = param ? Qs.stringify(param, { arrayFormat: 'repeat' }) : {}
+        requestConfig = { method: method, url: domain + url, data: param }
+      }
+      return axios(requestConfig)
+        .then(function (res) {
+          if (res.data.code !== 200) {
+            var msg = res.data.msg || res.data.message || '请求失败'
+            layer.msg(msg, { icon: 2 })
+            throw new Error(msg)
+          } else {
+            return res.data.data
+          }
+        })
+        .catch(function (err) {
+          layer.msg(err.message, { icon: 2 })
+          throw new Error(err)
+        })
+    }
+    var API_BENEFIT = {
+      // 获取用户海报内容
+      getBenefitListInfo: function (data) {
+        return request("get", "/BenefitList/info", data);
+      },
+      // 生成淘口令
+      createTpwd: function (data) {
+        return request("get", "/BenefitList/createTpwd", data);
+      },
+      // 获取用户海报推荐内容
+      getBenefitListRecommend: function (data) {
+        return request("get", "/BenefitList/recommend", data);
+      },
+      // 获取用户海报推荐内容
+      getBenefitListMoreBenefit: function (data) {
+        return request("get", "/BenefitList/moreBenefit", data);
+      },
+      // 获取用户海报推荐内容
+      getHtmlVersion: function (data) {
+        return request("get", "/BenefitList/htmlVersion", data);
+      },
+    }
+  </script>
+  <script>
+    Vue.component("component-array-list", {
+      props: {
+        id: {
+          type: [Number, String],
+          required: true,
+        },
+        contentitem: {
+          type: Array,
+          required: true,
+        },
+        styletype: {
+          type: [Number, String],
+          default: 1,
+          required: false,
+        },
+        stylecolor: {
+          type: String,
+          required: true,
+        },
+        isofficial: {
+          type: [Number, String],
+          required: true,
+        },
+      },
+      data: function () {
+        return {
+          API: {
+            GET_INFO: API_BENEFIT.getBenefitListInfo,
+            GET_TPWD: API_BENEFIT.createTpwd,
+          },
+        };
+      },
+      created: function () { },
+      mounted: function () { },
+      methods: {
+        getParam: function (name) {
+          var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+          var r = window.location.search.substr(1).match(reg)
+          if (r !== null) return decodeURI(r[2])
+          return ''
+        },
+        // 生成淘口令
+        createTpwdFun: function (item, type) {
+          if (this.getParam('preview') == 1) {
+            layer.msg('请生成推广海报', { icon: 2 });
+            return;
+          }
+          var that = this;
+          var id = this.id;
+          var domain = window.location.host;
+          var data = {
+            id: id,
+            domain: domain,
+            type: type
+          };
+          if (type === 1) {
+            data.itemid = item.itemid;
+            data.activityid = item.activityid;
+            data.title = item.itemshorttitle;
+          } else if (type === 2) {
+            data.activity_material_id = item.activity_material_id;
+            data.activity_url = item.activity_url;
+            data.title = item.activity_title;
+          }
+          this.API.GET_TPWD(data).then(function (res) {
+            that.$emit('get-tpwd', res.tpwd);
+          });
+        },
+      },
+      template: "#template-array-list",
+    });
+    Vue.component("component-block-list", {
+      props: {
+        id: {
+          type: [Number, String],
+          required: true,
+        },
+        contentitem: {
+          type: Array,
+          required: true,
+        },
+        styletype: {
+          type: [Number, String],
+          default: 1,
+          required: false,
+        },
+        stylecolor: {
+          type: String,
+          required: true,
+        },
+        isofficial: {
+          type: [Number, String],
+          required: true,
+        },
+      },
+      data: function () {
+        return {
+          API: {
+            GET_INFO: API_BENEFIT.getBenefitListInfo,
+            GET_TPWD: API_BENEFIT.createTpwd,
+          },
+        };
+      },
+      created: function () { },
+      mounted: function () { },
+      methods: {
+        getParam: function (name) {
+          var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+          var r = window.location.search.substr(1).match(reg)
+          if (r !== null) return decodeURI(r[2])
+          return ''
+        },
+        // 生成淘口令
+        createTpwdFun: function (item, type) {
+          if (this.getParam('preview') == 1) {
+            layer.msg('请生成推广海报', { icon: 2 });
+            return;
+          }
+          var that = this;
+          var id = this.id;
+          var domain = window.location.host;
+          var data = {
+            id: id,
+            domain: domain,
+            type: type
+          };
+          if (type === 1) {
+            data.itemid = item.itemid;
+            data.activityid = item.activityid;
+            data.title = item.itemshorttitle;
+          } else if (type === 2) {
+            data.activity_material_id = item.activity_material_id;
+            data.activity_url = item.activity_url;
+            data.title = item.activity_title;
+          }
+          this.API.GET_TPWD(data).then(function (res) {
+            that.$emit('get-tpwd', res.tpwd);
+          });
+        },
+      },
+      template: "#template-block-list",
+    });
+    Vue.component("component-detailed-list", {
+      props: {
+        id: {
+          type: [Number, String],
+          required: true,
+        },
+        contentitem: {
+          type: Array,
+          required: true,
+        },
+        styletype: {
+          type: [Number, String],
+          default: 1,
+          required: false,
+        },
+        stylecolor: {
+          type: String,
+          required: true,
+        },
+        isofficial: {
+          type: [Number, String],
+          required: true,
+        },
+      },
+      data: function () {
+        return {
+          API: {
+            GET_INFO: API_BENEFIT.getBenefitListInfo,
+            GET_TPWD: API_BENEFIT.createTpwd,
+          },
+        };
+      },
+      created: function () { },
+      mounted: function () { },
+      methods: {
+        getParam: function (name) {
+          var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+          var r = window.location.search.substr(1).match(reg)
+          if (r !== null) return decodeURI(r[2])
+          return ''
+        },
+        // 生成淘口令
+        createTpwdFun: function (item, type) {
+          if (this.getParam('preview') == 1) {
+            layer.msg('请生成推广海报', { icon: 2 });
+            return;
+          }
+          var that = this;
+          var id = this.id;
+          var domain = window.location.host;
+          var data = {
+            id: id,
+            domain: domain,
+            type: type
+          };
+          if (type === 1) {
+            data.itemid = item.itemid;
+            data.activityid = item.activityid;
+            data.title = item.itemshorttitle;
+          } else if (type === 2) {
+            data.activity_material_id = item.activity_material_id;
+            data.activity_url = item.activity_url;
+            data.title = item.activity_title;
+          }
+          this.API.GET_TPWD(data).then(function (res) {
+            that.$emit('get-tpwd', res.tpwd);
+          });
+        },
+      },
+      template: "#template-detailed-list",
+    });
+    var app = new Vue({
+      el: '#benefit-app',
+      data: {
+        loading: true,
+        id: '',
+        lid: '',
+        attr: {
+          background_img: '', // 背景图
+          background_color: '', // 背景色
+          title: '', // 标题
+          title_size: '', // 标题字号
+          title_color: '',  // 标题颜色
+          subtitle: '', // 副标题
+          subtitle_size: '', // 副标题字号
+          subtitle_color: '', // 副标题颜色
+          end_at: '', // 结束时间
+          date_text: '', // 显示活动日期信息
+          type: '', // 类型
+          type_text: '', // 清单类型对应名称
+          head_img: '', // 用户头像
+          stage_name: '', // 用户名
+          poster: '', // 海报
+          date_color: '', // 时间颜色
+          date_size: '', // 时间字号
+          style: '', // 样式类型
+          show_date: '', // 显示时间
+          is_official: '', // 是否官方清单
+        },
+        pagenation: {
+          count: 0, // 列表总数
+          page: 1, // 当前页
+          page_count: 1, // 总页码
+          page_size: 20, // 每页数量
+        },
+        icon: {
+          activity_img: '',
+          activity_material_id: '',
+          activity_title: '',
+          activity_url: '',
+        },
+        active_tab_id: '',
+        list_type: '',
+        list_tab: [],
+        list: [],
+        recommend_list: [],
+        more_list: [],
+        show_more: 1,
+        navIndex: 0,
+        is_end: false,
+        times: {
+          D: '00',
+          h: '00',
+          m: '00',
+          s: '00'
+        },
+        tpwd: '',
+        isiOS: false,
+        fixed_top: false,
+        API: {
+          GET_INFO: API_BENEFIT.getBenefitListInfo,
+          GET_TPWD: API_BENEFIT.createTpwd,
+          GET_REC: API_BENEFIT.getBenefitListRecommend,
+          GET_MORE: API_BENEFIT.getBenefitListMoreBenefit,
+          GET_VER: API_BENEFIT.getHtmlVersion,
+        },
+      },
+      computed: {
+        // 列表样式名称
+        listStyleName: function () {
+          var style = Number(this.attr.style);
+          if (style === 1) {
+            return "component-array-list";
+          } else if (style === 2) {
+            return "component-block-list";
+          } else if (style === 3) {
+            return "component-detailed-list";
+          }
+        },
+        // 清单标题样式
+        benefitTitleStyle: function () {
+          var color = "color:" + this.attr.title_color + ";";
+          var fontSize = "font-size:" + this.attr.title_size / 100 + "rem;";
+          return color + fontSize;
+        },
+        // 清单副标题样式
+        benefitSubtitleStyle: function () {
+          var color = "color:" + this.attr.subtitle_color + ";";
+          var fontSize = "font-size:" + this.attr.subtitle_size / 100 + "rem;";
+          return color + fontSize;
+        },
+        // 清单时间样式
+        benefitDateStyle: function () {
+          var color = 'color:' + this.attr.date_color.font + ';';
+          var background_color = 'background-color:' + this.attr.date_color.background + ';';
+          var border_color = 'border-color:' + this.attr.date_color.border + ';';
+          return color + background_color + border_color;
+        }
+      },
+      created: function () { },
+      mounted: function () {
+        this.id = this.getParam('id');
+        this.lid = this.getParam('lid');
+        this.ver = this.getParam('v');
+        this.preview = this.getParam('preview');
+        this.is_official = this.getParam('is_official');
+
+        if (this.id === '') {
+          layer.msg('缺少清单id，请重新扫码')
+        } else {
+          this.getHtmlVersion();
+          this.getBenefitListBase('first');
+          this.getRecommend();
+          this.getMoreBenefit();
+        }
+      },
+      methods: {
+        fixed() {
+          if (this.list_tab.length <= 1) {
+            return
+          }
+          var that = this;
+          var u = navigator.userAgent;
+          var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+          var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+          // this.isiOS = isiOS;
+          if (isAndroid || isiOS) {
+            var num = 380;
+            var deviceWidth = document.documentElement.clientWidth;
+            deviceWidth = deviceWidth >= 750 ? 750 : deviceWidth;
+            var rem_num = Math.floor(num * deviceWidth / 750);
+
+            window.addEventListener("scroll", function () {
+              var scrollT =
+                document.documentElement.scrollTop || document.body.scrollTop;
+              that.fixed_top = scrollT > rem_num
+            })
+          }
+        },
+        // 轮播图初始化
+        tabSwiperNewFun: function () {
+          this.tabSwiper = new Swiper(".tab-swiper", {
+            slidesPerView: 4.5,
+            slideToClickedSlide: true,
+            observer: true,
+            resistanceRatio: 0,
+          });
+        },
+        // 倒计时
+        countDown: function () {
+          if (this.is_end) {
+            return
+          }
+          var that = this;
+          var endTime = this.attr.end_at;
+          clearInterval(this.timer);
+          this.timer = setInterval(function () {
+            var now = new Date().getTime();
+            var end = endTime * 1000;
+            var leftTime = end - now;
+            if (leftTime >= 0) {
+              var D, h, m, s;
+              D = Math.floor(leftTime / 1000 / 60 / 60 / 24);
+              D = D < 10 ? '0' + D : D;
+              h = Math.floor((leftTime / 1000 / 60 / 60) % 24);
+              h = h < 10 ? '0' + h : h;
+              m = Math.floor((leftTime / 1000 / 60) % 60);
+              m = m < 10 ? '0' + m : m;
+              s = Math.floor((leftTime / 1000) % 60);
+              s = s < 10 ? '0' + s : s;
+              that.times = { D: D, h: h, m: m, s: s };
+            } else {
+              clearInterval(that.timer);
+              that.is_end = true;
+            }
+          }, 1000);
+        },
+        // 获取指定参数
+        getParam: function (name) {
+          var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+          var r = window.location.search.substr(1).match(reg)
+          if (r !== null) return decodeURI(r[2])
+          return ''
+        },
+        // 获取更多福利
+        getMoreBenefit: function () {
+          var that = this;
+          var domain = window.location.host;
+          var data = {
+            id: this.id,
+            domain: domain,
+            preview: this.preview,
+            is_official: this.is_official
+          };
+          this.API.GET_MORE(data).then(function (res) {
+            that.more_list = res.list;
+          })
+        },
+        // 获取版本号
+        getHtmlVersion: function () {
+          var ver = this.ver;
+          var that = this;
+          this.API.GET_VER().then(function (res) {
+            if (ver != res.v) {
+              var url = window.location.href;
+              url = url.split('?')[0];
+              url = `${url}?id=${that.id}&lid=${that.lid}&v=${res.v}`
+              if (that.preview) {
+                url = url + `&preview=${that.preview}`
+              }
+              if (that.is_official) {
+                url = url + `&is_official=${that.is_official}`
+              }
+              window.location.replace(url);
+            }
+          })
+        },
+        // 获取用户海报内容
+        getBenefitListBase: function (mode) {
+          var that = this;
+          var domain = window.location.host;
+          var data = {
+            id: this.id,
+            preview: this.preview,
+            is_official: this.is_official,
+            domain: domain
+          }
+          if (this.lid) {
+            data.lid = this.lid;
+          }
+          var loaidng = layer.load(2, {
+            content: '加载中...',
+            success: function (layero) {
+              layero.find('.layui-layer-content').css({
+                'paddingTop': '40px',
+                'width': '60px',
+                'textAlign': 'center',
+                'backgroundPositionX': 'center'
+              });
+            }
+          });
+          this.API.GET_INFO(data).then(function (res) {
+            that.attr = {
+              background_img: res.background_img,
+              background_color: res.background_color,
+              title: res.title,
+              title_size: res.title_size,
+              title_color: res.title_color,
+              subtitle: res.subtitle,
+              subtitle_size: res.subtitle_size,
+              subtitle_color: res.subtitle_color,
+              end_at: res.end_at,
+              date_text: res.date_text,
+              type: res.type,
+              type_text: res.type_text,
+              head_img: res.head_img,
+              stage_name: res.stage_name,
+              poster: res.poster,
+              date_color: res.date_color,
+              date_size: res.date_size,
+              style: res.style,
+              show_date: res.show_date,
+              show_date: res.show_date,
+              show_seller_info: res.show_seller_info,
+              is_official: res.is_official,
+            };
+            document.title = res.title;
+            that.list_type = res.list_type;
+            that.list_tab = res.list_tab;
+            that.type = res.type;
+            that.icon = res.icon;
+            var end = res.end_at * 1000;
+            var now = new Date().getTime();
+            that.is_end = res.is_valid == 0;
+            if (mode === 'first') {
+              if (now < end && res.type == 3) {
+                that.countDown();
+              }
+              that.loading = false;
+              that.active_tab_id = res.list_tab[0].tab_id;
+              that.list = res.list;
+              that.pagnation = res.pagnation;
+              if (res.pagnation.page >= res.pagnation.page_count) {
+                that.show_more = 3;
+              } else {
+                that.show_more = 1;
+              }
+              setTimeout(() => {
+                if (res.list_tab.length > 1) {
+                  that.tabSwiperNewFun();
+                }
+                that.fixed();
+                layer.close(loaidng);
+              }, 0);
+            }
+          });
+        },
+        // 获取商品列表
+        getGoodsList: function (mode) {
+          var that = this;
+          if (mode === 'refresh') {
+            this.list = [];
+            this.pagenation.page = 1;
+          }
+          var data = {
+            id: this.id,
+            tab_id: this.active_tab_id,
+            page: this.pagenation.page,
+            preview: this.preview,
+            is_official: this.is_official,
+          }
+          if (this.lid) {
+            data.lid = this.lid;
+          }
+          this.API.GET_INFO(data).then(function (res) {
+            var end = res.end_at * 1000;
+            var now = new Date().getTime();
+            that.is_end = res.is_valid == 0;
+            that.list_type = res.list_type;
+            if (mode === 'refresh') {
+              that.list = res.list;
+            } else {
+              that.list = that.list.concat(res.list);
+            }
+            that.pagenation = res.pagnation;
+            if (res.pagnation.page >= res.pagnation.page_count) {
+              that.show_more = 3;
+            } else {
+              that.show_more = 1;
+            }
+          });
+        },
+        // 改变导航栏项
+        changeTabItem: function (index, id) {
+          this.active_tab_id = id;
+          this.tabSwiper.slideTo(index);
+          this.show_more = 2;
+          this.getGoodsList('refresh');
+        },
+        // 加载下一页
+        loadNextPage: function () {
+          if (this.show_more != 1) {
+            return;
+          }
+          this.show_more = 2;
+          let page = this.pagenation.page;
+          this.pagenation.page = page + 1;
+          this.getGoodsList();
+        },
+        // 改变底部导航栏项
+        changeNavIndex: function (index) {
+          this.navIndex = index;
+          setTimeout(function () {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+          }, 0);
+        },
+        // 获取用户海报推荐内容
+        getRecommend: function () {
+          var that = this;
+          var domain = window.location.host;
+          var data = {
+            id: this.id,
+            preview: this.preview,
+            domain: domain
+          };
+          this.API.GET_REC(data).then(function (res) {
+            that.recommend_list = res.list;
+          })
+        },
+        // 生成淘口令
+        createTpwdCommon: function (item, type) {
+          if (this.getParam('preview') == 1) {
+            layer.msg('请生成推广海报', { icon: 2 });
+            return;
+          }
+          var that = this;
+          var id = this.id;
+          var domain = window.location.host;
+          var data = {
+            id: id,
+            domain: domain,
+            type: type
+          };
+          if (type === 1) {
+            data.itemid = item.itemid;
+            data.activityid = item.activityid;
+            data.title = item.itemshorttitle;
+          } else if (type === 2) {
+            data.activity_material_id = item.activity_material_id;
+            data.activity_url = item.activity_url;
+            data.title = item.activity_title;
+          }
+          this.API.GET_TPWD(data).then(function (res) {
+            that.getTpwd(res.tpwd);
+          });
+        },
+        // 获取淘口令
+        getTpwd: function (str) {
+          this.tpwd = str;
+          this.copy_layer = layer.open({
+            type: 1,
+            closeBtn: 1,
+            title: false,
+            shadeClose: true,
+            shade: 0.4,
+            shift: 0,
+            maxWidth: 999,
+            content: $('.tpwd-copy-content')
+          });
+        },
+        // 复制淘口令
+        copyTpwd: function () {
+          if (!this.tpwd) {
+            return
+          }
+          var that = this
+          var clipboard = new ClipboardJS('#public-copy', {
+            text: function () {
+              return that.tpwd
+            }
+          })
+          clipboard.on('success', function (e) {
+            layer.msg('复制成功，请打开淘宝APP领券购买', {
+              time: 3000,
+            }, function () {
+              layer.close(that.copy_layer);
+              that.tpwd = '';
+            })
+            e.clearSelection()
+            clipboard.destroy() // 释放内存
+          })
+          clipboard.on('error', function (e) {
+            layer.msg('复制失败，请手动复制', {
+              shade: 0.4,
+              time: 1000,
+              shadeClose: true,
+            }, function () {
+              layer.open({
+                type: 1,
+                closeBtn: 1,
+                title: false,
+                shadeClose: true,
+                shade: 0.4,
+                shift: 0,
+                maxWidth: 999,
+                content: $('.tpwd-content')
+              });
+            })
+            clipboard.destroy() // 释放内存
+          })
+        },
+        // 跳转链接
+        goLink: function (url) {
+          if (this.getParam('preview') == 1) {
+            return;
+          }
+          window.open(url)
+        },
+        // 跳转超级搜
+        goSearchLink: function () {
+          if (this.getParam('preview') == 1) {
+            return;
+          }
+          var independent = "{$independent}";
+          if (independent == 1) {
+            var link = '/BenefitList/search?id=' + this.getParam('id');
+          } else {
+            var link = '/benefit_search.html?id=' + this.getParam('id');
+          }
+          var url = window.location.protocol.substring(0, window.location.protocol.length - 1) + '://' + window.location.host + link;
+          window.open(url)
+        },
+        // 打开海报弹窗
+        openPosterDialog: function () {
+          if (this.getParam('preview') == 1) {
+            return;
+          }
+          layer.open({
+            type: 1,
+            closeBtn: 1,
+            title: false,
+            shadeClose: true,
+            shade: 0.4,
+            shift: 0,
+            maxWidth: 999,
+            content: $('.poster-content')
+          });
+        }
+      },
+    })
+  </script>
+
+</body>
+
+</html>
